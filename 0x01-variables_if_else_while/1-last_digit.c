@@ -4,7 +4,7 @@
 
 /**
  * main - The main function.
- * Return: returns o if successful.
+ * Return: returns 0 if successful.
 */
 int main(void)
 {
