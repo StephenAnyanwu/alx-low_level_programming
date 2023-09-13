@@ -2,7 +2,7 @@
 
 /**
  *  main - a function that prints _putchar on the stdout
- *  Reuturn: returns 0 if successful
+ *  Return: returns 0 if successful
 */
 int main(void)
 {
