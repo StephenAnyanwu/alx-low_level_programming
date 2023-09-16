@@ -8,7 +8,7 @@
 int main(void)
 {
 	int n = 1024;
-	int _sum = 0;
+	long int _sum = 0;
 	int i;
 
 	/*printf("multiples of 3 or 5 below %d:\n", n);*/
@@ -24,6 +24,6 @@ int main(void)
 		}
 	}
 	printf("\n");
-	printf("\nThe sum of all the multiples of 3 or 5 below %d: %d\n", n, _sum);
+	printf("\nThe sum of all the multiples of 3 or 5 below %d: %ld\n", n, _sum);
 	return (0);
 }
