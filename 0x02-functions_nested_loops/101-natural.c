@@ -11,7 +11,7 @@ int main(void)
 	int _sum = 0;
 	int i;
 
-	printf("multiples of 3 or 5 below %d:\n", n);
+	/*printf("multiples of 3 or 5 below %d:\n", n);*/
 	for (i = 3; i < n; i++)
 	{
 		if (i % 3 == 0 || i % 5 == 0)
