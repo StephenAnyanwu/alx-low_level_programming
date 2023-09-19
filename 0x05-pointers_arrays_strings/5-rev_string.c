@@ -2,7 +2,7 @@
 #include <unistd.h>
 
 /**
- * _strlen - a function that returns the length of a string.
+ * _str_length - a function that returns the length of a string.
  * @str: a string (parameter).
  * Return: returns an integer (length of s).
 */
