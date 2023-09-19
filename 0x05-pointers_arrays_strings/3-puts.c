@@ -3,7 +3,7 @@
 /**
  * _strlen - a function that returns the length of a string.
  * @s: a pointer to the string (parameter).
- * Return: return an integer 
+ * Return: return an integer
 */
 int _strlen(char *s)
 {
