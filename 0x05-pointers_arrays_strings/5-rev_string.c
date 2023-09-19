@@ -19,16 +19,6 @@ int _str_length(char *str)
 }
 
 /**
- * _putchar - a function that prints a character.
- * @c: a character to be printed (parameter).
- * Return: return if successful.
-*/
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
-/**
  * rev_string - a function that prints a string, in reverse.
  * @s: a pointer to a string (parameter).
 */
