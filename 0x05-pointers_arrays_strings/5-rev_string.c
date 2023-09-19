@@ -1,5 +1,4 @@
 #include "main.h"
-#include <unistd.h>
 
 /**
  * _str_length - a function that returns the length of a string.
@@ -24,12 +23,14 @@ int _str_length(char *str)
 */
 void rev_string(char *s)
 {
-	int length = _str_length(s), i, idx;
+	int i, length = _str_length(s);
 
-	for (i = 0; i < length; i++)
+	for (i = 0; i < length / 2; i++)
 	{
-		idx = length - (i + 1);
-		_putchar(s[idx]);
+		char j;
+
+		j = s[i];
+		s[i] = s[length - 1 - i];
+		s[length - i - 1] = j;
 	}
-	_putchar('\n');
 }
