@@ -41,7 +41,7 @@ char char_toupper(char c)
 */
 char *cap_string(char *str)
 {
-	char ch[] = {' ', ',', ';', '.', '!', '?', '"', '(', ')', '{', '}', '\n'};
+	char ch[] = {' ', ',', ';', '.', '!', '?', '"', '(', ')', '{', '}', '\n', '\t'};
 	int idx = 0;
 	int n;
 
@@ -51,9 +51,7 @@ char *cap_string(char *str)
 		{
 			if (idx == 0)
 				str[0] = char_toupper(str[0]);
-			else if (str[idx] == '\t')
-				str[idx] = ' ';
-			for (n = 0; n <= 12; n++)
+			for (n = 0; n <= 13; n++)
 			{
 				if (str[idx - 1] == ch[n])
 					str[idx] = char_toupper(str[idx]);
