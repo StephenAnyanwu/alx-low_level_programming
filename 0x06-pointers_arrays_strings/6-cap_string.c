@@ -41,7 +41,8 @@ char char_toupper(char c)
 */
 char *cap_string(char *str)
 {
-	char ch[] = {' ', ',', ';', '.', '!', '?', '"', '(', ')', '{', '}', '\n', '\t'};
+	char ch[] = {' ', ',', ';', '.', '!', '?', '"',
+			'(', ')', '{', '}', '\n', '\t'};
 	int idx = 0;
 	int n;
 
