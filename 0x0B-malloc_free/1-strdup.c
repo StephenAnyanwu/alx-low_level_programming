@@ -14,14 +14,18 @@ char *_strdup(char *str)
 	/* calculate the length of str*/
 	while (str[len] != '\0')
 		len++;
-	if (len == 0)
+	if (str == NULL)
 		return (NULL);
 	p = (char *)malloc(len * sizeof(char));
 	if (p != NULL)
 	{
-		for (i = 0; i < len; i++)
-			*(p + i) = str[i];
-		*(p + len) = '\0';
+		if (len != 0)
+		{
+			for (i = 0; i < len; i++)
+				*(p + i) = str[i];
+			*(p + len) = '\0';
+			return (p);
+		}
 		return (p);
 	}
 	return (NULL);
