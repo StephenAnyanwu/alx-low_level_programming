@@ -12,11 +12,11 @@ char *_strdup(char *str)
 	int i, len = 0, size;
 	char *p;
 
+	if (str == NULL)
+		return (NULL);
 	/* calculate the length of str*/
 	while (str[len] != '\0')
 		len++;
-	if (str == NULL)
-		return (NULL);
 	size = sizeof(char);
 	p = (char *)malloc((len * size) + size);
 	if (p != NULL)
