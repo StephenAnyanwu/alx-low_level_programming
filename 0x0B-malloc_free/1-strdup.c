@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 /**
  * _strdup - a function that duplicates a string.
@@ -8,7 +9,7 @@
 */
 char *_strdup(char *str)
 {
-	int i, len = 0;
+	int i, len = 0, size;
 	char *p;
 
 	/* calculate the length of str*/
@@ -16,7 +17,8 @@ char *_strdup(char *str)
 		len++;
 	if (str == NULL)
 		return (NULL);
-	p = (char *)malloc(len * sizeof(char));
+	size = sizeof(char);
+	p = (char *)malloc((len * size) + size);
 	if (p != NULL)
 	{
 		if (len != 0)
@@ -26,7 +28,10 @@ char *_strdup(char *str)
 			*(p + len) = '\0';
 			return (p);
 		}
+		p = (char *)malloc(1 * sizeof(char));
+		*p = '\0';
 		return (p);
 	}
+	free(p);
 	return (NULL);
 }
