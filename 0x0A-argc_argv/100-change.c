@@ -11,31 +11,39 @@
 */
 int main(int argc, char *argv[])
 {
-	int unique_coins[] = {25, 10, 5, 2, 1};
-	int num = atoi(argv[1]);
-	int val = atoi(argv[1]);
-	int cents = 0, coins = 0, i;
-
 	if (argc != 2)
 	{
 		printf("Error\n");
 		return (1);
 	}
-	while (1)
+	else
 	{
-		if (cents == num)
+		int unique_coins[] = {25, 10, 5, 2, 1};
+		int num = atoi(argv[1]);
+		int val = atoi(argv[1]);
+		int cents = 0, coins = 0, i;
+	
+		if (num < 0)
 		{
-			printf("%d\n", coins);
-			break;
+			printf("%d\n", 0);
+			return (0);
 		}
-		for (i = 0; i < 5; i++)
+		while (1)
 		{
-			if (val >= unique_coins[i])
+			if (cents == num)
 			{
-				cents += unique_coins[i];
-				val -= unique_coins[i];
-				coins++;
-				i += 4;
+				printf("%d\n", coins);
+				break;
+			}
+			for (i = 0; i <	 5; i++)
+			{
+				if (val >= unique_coins[i])
+				{
+					cents += unique_coins[i];
+					val -= unique_coins[i];
+					coins++;
+					i += 4;
+				}
 			}
 		}
 	}
