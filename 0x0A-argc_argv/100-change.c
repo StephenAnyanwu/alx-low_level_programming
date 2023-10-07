@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 			if (cents == num)
 			{
 				printf("%d\n", coins);
-				break;
+				return (0);
 			}
 			for (i = 0; i <	 5; i++)
 			{
