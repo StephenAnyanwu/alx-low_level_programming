@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 		int num = atoi(argv[1]);
 		int val = atoi(argv[1]);
 		int cents = 0, coins = 0, i;
-	
+
 		if (num < 0)
 		{
 			printf("%d\n", 0);
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 			if (cents == num)
 			{
 				printf("%d\n", coins);
-				return (0);
+				break;
 			}
 			for (i = 0; i <	 5; i++)
 			{
