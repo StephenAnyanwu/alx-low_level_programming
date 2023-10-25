@@ -1,5 +1,4 @@
 #include "lists.h"
-
 /**
  * relo - relocate memmory for array of pointer to the nodes
  * in linked list.
@@ -8,7 +7,8 @@
  * @new: new node to be added to the list.
  * Return: pointer to the new list.
 */
-const listint_t **relo(const listint_t **list, size_t size, const listint_t *new)
+const listint_t **relo(const listint_t **list, size_t size,
+		const listint_t *new)
 {
 	const listint_t **newlist;
 	size_t i;
@@ -33,7 +33,6 @@ const listint_t **relo(const listint_t **list, size_t size, const listint_t *new
  * Return:the number of nodes in the list.
  * If the function fails, exit the program with status 98.
 */
-
 size_t print_listint_safe(const listint_t *head)
 {
 	size_t i, n = 0;
