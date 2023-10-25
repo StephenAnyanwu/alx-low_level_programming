@@ -23,6 +23,7 @@ void left_move_print(char *str, int size)
 	}
 	_putchar('\n');
 	free(str);
+	str = NULL;
 }
 
 /**
@@ -121,6 +122,7 @@ int main(int argc, char *argv[])
 	{
 		for (ti = 0; e[ti]; ti++)
 			_putchar(e[ti]);
+		free(a);
 		exit(98);
 	}
 	init(a, ln - 1);
