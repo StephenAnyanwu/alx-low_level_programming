@@ -13,7 +13,7 @@ void left_move_print(char *str, int size)
 	int i, j;
 
 	i = j = 0;
-	while (j < size)
+	while (i < size)
 	{
 		if (str[i] != '0')
 			j = 1;
@@ -130,7 +130,7 @@ int main(int argc, char *argv[])
 		if (t == NULL)
 		{
 			for (ti = 0; e[ti]; ti++)
-				_putchar(98);
+				_putchar(e[ti]);
 			free(a);
 			exit(98);
 		}
