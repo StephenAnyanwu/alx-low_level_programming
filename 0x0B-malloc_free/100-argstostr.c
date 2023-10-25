@@ -4,32 +4,44 @@
 /**
  * argstostr - a function that concatenates all of its arguments.
  * @ac: argument count.
- * @av: argument vector.
+ * @av: a pointer to argument vector.
  * Return: returns a pointer to the new string or NULL if it fails.
 */
 char *argstostr(int ac, char **av)
 {
-	int i, j, k, l;
-	char *p;
+	int i, j, k, len = 0;
+	char *p, *str;
 
 	if (ac == 0 || av == NULL)
 		return (NULL);
-	for (i = 0; i < ac; i++)
-		for (j = 0; av[i][j]; j++)
-			l++;
-	l += ac;
-	p = malloc(sizeof(char) * l + 1);
-	if (p == NULL)
-		return (NULL);
+	/* calculating the length of the arguments (av) all together */
 	for (i = 0; i < ac; i++)
 	{
-		for (j = 0; av[i][j]; j++)
-		{
-			p[k] = av[i][j];
-			k++;
-		}
-		if (p[k] == '\0')
-			p[k++] = '\0';
+		p = av[i];
+		j = 0;
+		while (p[j++])
+			len++;
+		len++;
 	}
-	return (p);
+	/* allocating memory where to store the arguments (av) */
+	str = malloc(sizeof(char) * (len + 1));
+	if (str == NULL)
+		return (NULL);
+	/* appending the arguments (av) to str */
+	for (i = 0, j = 0; i < ac && j < len; i++)
+	{
+		p = av[i];
+		k = 0;
+		while (p[k])
+		{
+			str[j] = p[k];
+			k++;
+			j++;
+		}
+		/* append a newline after end of each argument append */
+		str[j++] = '\n';
+	}
+	/* append a null char at the end of the last appended argument*/
+	str[j] = '\0';
+	return (str);
 }
