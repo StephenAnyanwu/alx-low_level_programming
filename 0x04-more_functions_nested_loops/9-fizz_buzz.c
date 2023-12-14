@@ -20,13 +20,15 @@ int  main(void)
 	for (i = 1; i <= n; i++)
 	{
 		if (i % 3 == 0 && i % 5 == 0)
-			printf("%s ", fb);
+			printf("%s", fb);
 		else if (i % 3 == 0)
-			printf("%s ", f);
+			printf("%s", f);
 		else if (i % 5 == 0)
-			printf("%s ", b);
+			printf("%s", b);
 		else
-			printf("%d ", i);
+			printf("%d", i);
+		if (i != n)
+			printf(" ");
 	}
 	printf("\n");
 	return (0);
