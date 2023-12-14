@@ -5,7 +5,6 @@
  * @size: size of the triangle (parameter).
  * Return: returns nothing.
 */
-
 void print_triangle(int size)
 {
 	int i, j;
@@ -25,7 +24,6 @@ void print_triangle(int size)
 			else
 				_putchar(' ');
 		}
-			
 		_putchar('\n');
 		k--;
 	}
