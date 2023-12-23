@@ -44,7 +44,6 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	unsigned long int idx = key_index((const unsigned char *)key, ht->size);
 	hash_node_t *item = create_item(key, value);
 	hash_node_t *item_loc = ht->array[idx];
-	hash_node_t *temp;
 
 	/* location to add item in array is empty */
 	if (item_loc == NULL)
@@ -56,9 +55,8 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	/* (new node) at the beginning of the list */
 	else
 	{
-		temp = item_loc;
-		item_loc = item;
-		item_loc->next = temp;
+		ht->array[idx] = item;
+		ht->array[idx]->next = item_loc;
 		return (1);
 	}
 	return (0);
