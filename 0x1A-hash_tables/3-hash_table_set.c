@@ -22,7 +22,6 @@ hash_node_t *create_item(const char *key, const char *value)
 {
 	/* a pointer to a hash_table_t item */
 	hash_node_t *item = malloc(sizeof(hash_node_t));
-
 	/* allocates memory to the item key */
 	item->key = malloc(strlen(key) + 1);
 	/* allocates memory to the item value */
@@ -56,33 +55,33 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		return (0);
 	idx = key_index((const unsigned char *)key, ht->size);
 	item = create_item(key, value);
-	item_loc = ht->array[idx];
-	/* if location to add item in array is empty */
-	if (item_loc == NULL)
+	if (item != NULL)
 	{
-		ht->array[idx] = item; /* insert directly */
-		return (1);
-	}
-	/* scenerio when there is a collision add the item */
-	/* (new node) at the beginning of the list */
-	else
-	{
-		/* checks if key already exist in the list */
-		while (ht->array[idx]->next != NULL)
+		item_loc = ht->array[idx];
+		if (item_loc == NULL) /* no collision */
 		{
-			if (strcmp(ht->array[idx]->key, key) == 0)
-			{
-				free(ht->array[idx]->value);
-				ht->array[idx]->value = value_dup;
-				ht->array[idx] = item_loc;
-				return (1);
-			}
-			ht->array[idx] = ht->array[idx]->next;
+			ht->array[idx] = item; /* insert directly */
+			return (1);
 		}
-		ht->array[idx] = item_loc;
-		ht->array[idx] = item;
-		ht->array[idx]->next = item_loc;
-		return (1);
+		else /* collision, add at the beginning of list */
+		{
+			while (ht->array[idx]->next != NULL)
+			{/* checks if key already exist in the list */
+				if (strcmp(ht->array[idx]->key, key) == 0)
+				{
+					free(ht->array[idx]->value);
+					ht->array[idx]->value = value_dup;
+					ht->array[idx] = item_loc;
+					return (1);
+				}
+				ht->array[idx] = ht->array[idx]->next;
+			}
+			ht->array[idx] = item_loc;
+			ht->array[idx] = item;
+			ht->array[idx]->next = item_loc;
+			return (1);
+		}
+		return (0);
 	}
 	return (0);
 }
