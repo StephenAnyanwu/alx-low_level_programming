@@ -39,15 +39,21 @@ hash_node_t *create_item(const char *key, const char *value)
  * hash_table_set - adds an element to the hash table.
  * @ht: the hash table.
  * @key: key of item (can not be an empty string).
- * @value: value of item (can be an empty string).
+ * @value: value of item (can be an empty string). Note that
+ * value must be duplicated.
  * Return: 1 if it succeeded, 0 otherwise.
 */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int idx;
 	hash_node_t *item, *item_loc;
+	char *value_dup;
 
-	if (strlen(key) == 0)
+	if (ht == NULL || key == NULL || *key == '\0' || value == NULL)
+		return (0);
+	/* duplicates value */
+	value_dup = strdup(value);
+	if (value_dup == NULL)
 		return (0);
 	/* finds the index of the key using a hash function */
 	idx = key_index((const unsigned char *)key, ht->size);
