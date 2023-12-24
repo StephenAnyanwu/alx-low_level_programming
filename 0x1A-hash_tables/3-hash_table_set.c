@@ -51,17 +51,12 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	if (ht == NULL || key == NULL || *key == '\0' || value == NULL)
 		return (0);
-	/* duplicates value */
-	value_dup = strdup(value);
+	value_dup = strdup(value); /* duplicates value */
 	if (value_dup == NULL)
 		return (0);
-	/* finds the index of the key using a hash function */
 	idx = key_index((const unsigned char *)key, ht->size);
-	/* creates an item (a node) */
 	item = create_item(key, value);
-	/* location in the array where to store the created item */
 	item_loc = ht->array[idx];
-
 	/* if location to add item in array is empty */
 	if (item_loc == NULL)
 	{
@@ -72,6 +67,19 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	/* (new node) at the beginning of the list */
 	else
 	{
+		/* checks if key already exist in the list */
+		while (ht->array[idx]->next != NULL)
+		{
+			if (strcmp(ht->array[idx]->key, key) == 0)
+			{
+				free(ht->array[idx]->value);
+				ht->array[idx]->value = value_dup;
+				ht->array[idx] = item_loc;
+				return (1);
+			}
+			ht->array[idx] = ht->array[idx]->next;
+		}
+		ht->array[idx] = item_loc;
 		ht->array[idx] = item;
 		ht->array[idx]->next = item_loc;
 		return (1);
