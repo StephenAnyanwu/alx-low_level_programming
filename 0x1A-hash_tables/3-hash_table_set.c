@@ -57,14 +57,11 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (value_dup == NULL)
 		return (0);
 	idx = key_index((const unsigned char *)key, ht->size); /* hash key */
-	item = create_item(key, value);
+	item = create_item(key, value_dup);
 	if (item != NULL)
 	{
 		if (ht->array[idx] == NULL) /* no collision */
-		{
 			ht->array[idx] = item; /* insert directly */
-			return (1);
-		}
 		else /* collision, add at the beginning of list */
 		{
 			item_loc = ht->array[idx];
@@ -73,6 +70,8 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 				if (strcmp(ht->array[idx]->key, key) == 0)
 				{/* update item if key already exist in the list */
 					strcpy(ht->array[idx]->value, value_dup);
+					free(value_dup);
+					value_dup = NULL;
 					ht->array[idx] = item_loc;
 					return (1);
 				}
@@ -81,9 +80,10 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 			ht->array[idx] = item_loc;
 			ht->array[idx] = item;
 			ht->array[idx]->next = item_loc;
-			return (1);
 		}
-		return (0);
+		free(value_dup);
+		value_dup = NULL;
+		return (1);
 	}
 	return (0);
 }
