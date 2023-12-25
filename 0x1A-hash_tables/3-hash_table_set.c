@@ -57,14 +57,14 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (value_dup == NULL)
 		return (0);
 	idx = key_index((const unsigned char *)key, ht->size); /* hash key */
-	item = create_item(key, value_dup);
+	item = create_item(key, value_dup); /* creates item */
 	if (item != NULL)
 	{
 		if (ht->array[idx] == NULL) /* no collision */
 			ht->array[idx] = item; /* insert directly */
 		else /* collision, add at the beginning of list */
 		{
-			item_loc = ht->array[idx];
+			item_loc = ht->array[idx]; /* array location to place item */
 			while (ht->array[idx] != NULL)
 			{/* checks if item's key already exist in the list */
 				if (strcmp(ht->array[idx]->key, key) == 0)
