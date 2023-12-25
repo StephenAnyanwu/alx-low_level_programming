@@ -8,7 +8,8 @@
 /* >> Compute the index based on the hash function. */
 /* >> Check if the index is already occupied or not, by comparing the key.*/
 /*	>> If it is not occupied, you can directly insert it into index. */
-/*	>> Otherwise, it is a collision, and you will need to handle it by: */
+/*	>> Otherwise, it is a collision, and you will need to handle it using */
+/*	   using chaining method (closed addressing): */
 /*		>> Updating the item if key already exist in the linked list */
 /*		>> adding the new item (node) at the beginning of the linked */
 /*		list if key does not exist*/
@@ -55,24 +56,23 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	value_dup = strdup(value); /* duplicates value */
 	if (value_dup == NULL)
 		return (0);
-	idx = key_index((const unsigned char *)key, ht->size);
+	idx = key_index((const unsigned char *)key, ht->size); /* hash key */
 	item = create_item(key, value);
 	if (item != NULL)
 	{
-		item_loc = ht->array[idx];
-		if (item_loc == NULL) /* no collision */
+		if (ht->array[idx] == NULL) /* no collision */
 		{
 			ht->array[idx] = item; /* insert directly */
 			return (1);
 		}
 		else /* collision, add at the beginning of list */
 		{
-			while (ht->array[idx]->next != NULL)
-			{/* checks if key already exist in the list */
+			item_loc = ht->array[idx];
+			while (ht->array[idx] != NULL)
+			{/* checks if item's key already exist in the list */
 				if (strcmp(ht->array[idx]->key, key) == 0)
-				{
-					free(ht->array[idx]->value);
-					ht->array[idx]->value = value_dup;
+				{/* update item if key already exist in the list */
+					strcpy(ht->array[idx]->value, value_dup);
 					ht->array[idx] = item_loc;
 					return (1);
 				}

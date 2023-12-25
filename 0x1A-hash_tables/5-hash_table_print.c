@@ -8,6 +8,7 @@
  * the array of hash table.
  * Order: array, list
  * If hash table is NULL, it prints nothing.
+ * Note: chaining method (closed addressing) is used in collision.
 */
 void hash_table_print(const hash_table_t *ht)
 {
@@ -30,7 +31,7 @@ void hash_table_print(const hash_table_t *ht)
 				check = 0;
 			}
 			item = ht->array[i];
-			if (item->next != NULL)
+			if (item->next != NULL) /* if more than 1 item (node) */
 			{
 				while (item->next != NULL)
 				{
