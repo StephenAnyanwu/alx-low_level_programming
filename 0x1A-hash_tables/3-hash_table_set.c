@@ -8,8 +8,10 @@
 /* >> Compute the index based on the hash function. */
 /* >> Check if the index is already occupied or not, by comparing the key.*/
 /*	>> If it is not occupied, you can directly insert it into index. */
-/*	>> Otherwise, it is a collision, and you will need to handle it, by */
-/*	>> adding the new item (node) at the beginning of the linked list */
+/*	>> Otherwise, it is a collision, and you will need to handle it by: */
+/*		>> Updating the item if key already exist in the linked list */
+/*		>> adding the new item (node) at the beginning of the linked */
+/*		list if key does not exist*/
 
 
 /**

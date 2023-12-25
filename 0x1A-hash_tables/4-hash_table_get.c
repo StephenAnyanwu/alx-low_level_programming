@@ -4,7 +4,7 @@
 /**
  * hash_table_get - retrieves a value associated with a key.
  * @ht: the hash table you want to look into.
- * @key: the key you are looking for. Note must not be an empty
+ * @key: the key you are looking for. Note key must not be an empty
  * string or NULL.
  * Return: the value associated with the element, or NULL if key
  * couldn’t be found.
