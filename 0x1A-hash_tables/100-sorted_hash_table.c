@@ -230,7 +230,7 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 }
 
 /**
- * selection_sort - sorts a hash table by the first character of
+ * selection_sort - sorts a hash table by the ascii value
  * its items keys.
  * @ht: the hash table.
  */
@@ -238,10 +238,14 @@ void selection_sort(const shash_table_t *ht)
 {
 	shash_node_t *ptr1, *ptr2;
 	char *temp_key, *temp_value;
+	unsigned long int hash1, hash2;
 
 	for (ptr1 = ht->shead; ptr1->snext != NULL; ptr1 = ptr1->snext)
 		for (ptr2 = ptr1->snext; ptr2 != NULL; ptr2 = ptr2->snext)
-			if (ptr1->key[0] > ptr2->key[0])
+		{
+			hash1 = key_index((const unsigned char *)ptr1->key, ht->size);
+			hash2 = key_index((const unsigned char *)ptr2->key, ht->size);
+			if (hash1 > hash2)
 			{
 				temp_key = ptr1->key;
 				temp_value = ptr1->value;
@@ -250,6 +254,7 @@ void selection_sort(const shash_table_t *ht)
 				ptr2->key = temp_key;
 				ptr2->value = temp_value;
 			}
+		}
 }
 
 /**
