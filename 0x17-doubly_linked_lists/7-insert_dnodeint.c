@@ -14,7 +14,7 @@ unsigned int dlist_len(dlistint_t *h)
 	if (h == NULL)
 		return (count);
 	temp = h;
-	/* be be sure that we are at the first node */
+	/* to be sure that we are at the first node */
 	while (temp->prev != NULL)
 		temp = temp->prev;
 	while (temp != NULL)
