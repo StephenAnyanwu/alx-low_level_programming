@@ -44,15 +44,12 @@ int advanced_binary_recursive(int *array, size_t low, size_t high, int value)
 		/* check if value is present at mid */
 		if (array[mid] == value)
 		{
-			while (array[mid - 1] == value)
-				/* if value is also at mid-1, */
-				/*move mid to right*/
-				--mid;
-			return (mid);
+			if (array[mid] == value && (mid == low || array[mid - 1] != value))
+				return (mid);
 		}
-		if (array[mid] < value)
-			return (advanced_binary_recursive(array, mid + 1, high, value));
-		return (advanced_binary_recursive(array, low, mid - 1, value));
+		if (array[mid] >= value)
+			return (advanced_binary_recursive(array, low, mid, value));
+		return (advanced_binary_recursive(array, mid + 1, high, value));
 	}
 	return (-1);
 }
