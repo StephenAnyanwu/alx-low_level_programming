@@ -32,6 +32,8 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 		/* element 'n' of high node (pointer) is greater than or equal to value */
 		if (step > size - 1 || high->n >= value)
 		{
+			if (step > size - 1)
+				step = size - 1;
 			printf("Value found between indexes [%ld] and [%ld]\n", low->index, step);
 			while (low->index <= high->index)
 			{
